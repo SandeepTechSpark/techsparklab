@@ -1,0 +1,43 @@
+<html>
+<head><title>ResultSheetOfTrainee</title><center>
+<hr>
+<h2> -------------------------- Result Sheet of A Trainee ---------------------------
+<hr>
+</center>
+</head>
+<body>
+<?php
+    if(isset($_POST['submit'])) {
+        $traineeName = $_POST['tname'];
+        $trade =  $_POST['trade'];
+        $rollNumber =  $_POST['roll'];
+        $mobileNumber =  $_POST['mobile'];
+        $net =  $_POST['net'];
+        $js =  $_POST['js'];
+        $mysql =  $_POST['mysql'];
+        $python =  $_POST['python'];
+        $php =  $_POST['php'];
+        $totalMarks = ($net+$js+$mysql+$python+$php);
+echo "<table border='1' cellspacing='0' cellpadding='10' align='left'>
+<tr><th colspan='2'>Trainee Datails  </th></tr>
+<tr><th>Name  </th><td align='center'>$traineeName</td></tr>
+<tr><th>Trade  </th><td align='center'>$trade</td></tr>
+<tr><th>Roll Number  </th><td align='center'>$rollNumber</td></tr>
+<tr><th>Mobile Number  </th><td align='center'>$mobileNumber</td></tr>
+</table>";
+echo "<table border='2' cellspacing='0' cellpadding='12' align='center'>
+<tr><th colspan='2'>Trainee's Report Card</th></tr>
+<tr><th>Name of Subjects</th><th>Obtained Marks</th></tr>
+<tr><th>Networking</th><td align='center'>$net</td></tr>
+<tr><th>Java Script</th><td align='center'>$js</td></tr>
+<tr><th>MySQL</th><td align='center'>$mysql</td></tr>
+<tr><th>Python </th><td align='center'>$python</td></tr>
+<tr><th>PHP</th><td align='center'>$php</td></tr>
+<tr><th>Total Marks</th><td align='center'><b>$totalMarks</b></td></tr>
+</table>";
+echo "<hr><hr>";
+        echo"<hr><a href='abc.html'> Home Page </a>";
+} else echo"<center><b>Please Submit Your Details First!</b></center>";
+    ?>
+    </body>
+    </html>

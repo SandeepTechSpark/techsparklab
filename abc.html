@@ -1,0 +1,35 @@
+<html>
+<head><title>ResultSheetOfTrainee</title></head>
+<center>
+<hr>
+<h2> -------------------------- Result Sheet of A Trainee ---------------------------
+<hr>
+</center>
+<body bgcolor='lightyellow'>
+<label><b><u>Details of Trainee</u> :  </b> Please fill up your details very carefully<hr>
+<form action='result.html'method='post'>
+    <div id='pp' style = "background-color : aqua;">
+    <label>Name     :       <input type='text' name='tname' placeholder='Enter Your Name' required></label><br>
+    <label>Select Trade :
+            <select name = "trade">
+                <option value=" " selected disabled> Select Trade </option>
+                <option value="CSA"> CSA </option>
+                <option value="EM"> EM </option>
+                <option value="IT"> IT </option>
+            </select>
+    </label><br>
+    <label>Roll_No  :       <input type='number' name='roll' placeholder='Enter Your Roll Number' required</label><br>
+    <label>Mobile_No    :      <input type='number' name='mobile' placeholder='Enter Your Mobile Number' required></label><br>
+    <hr>
+    <h4>Fill up Your Marks in Particular Subjects :</h4>
+    01.Networking : <input type='number' name='net' min='0' max='100' placeholder='Marks in Networking' required><br>
+    02.Java Script : <input type='number' name='js' min='0' max='100' placeholder='Marks in Java Script Marks' required><br>
+    03.MySQL      : <input type='number' name='mysql' min='0' max='100' placeholder='Marks ins MySQL' required><br>
+    04.Python     : <input type='number' name='python' min='0' max='100' placeholder='Marks in Python' required><br>
+    05.PHP         : <input type='number' name='php' min='0' max='100' placeholder='Marks in PHP' required><hr>
+                    <input type='submit' name='submit' value='Submit'>
+                    <input type='reset' name='reset' value='Clear Form'>
+    </div>
+</form>
+</body>
+</html>
