@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ResultSheetOfTrainee</title>
+    <style>
+        table { margin-top: 20px; border-collapse: collapse; }
+        .result-container { display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        #output { width: 100%; margin-top: 30px; }
+    </style>
+</head>
+<body bgcolor='lightyellow'>
+
+<label><b><u>Details of Trainee</u> : </b> Please fill up your details very carefully</label>
+<hr>
+
+<form id="resultForm">
+    <div id='pp' style="background-color : aqua; padding: 15px;">
+        <label>Name : <input type='text' id='tname' placeholder='Enter Your Name' required></label><br><br>
+        <label>Select Trade :
+            <select id="trade" required>
+                <option value="" selected disabled> Select Trade </option>
+                <option value="CSA"> CSA </option>
+                <option value="EM"> EM </option>
+                <option value="IT"> IT </option>
+            </select>
+        </label><br><br>
+        <label>Roll_No : <input type='number' id='roll' placeholder='Enter Your Roll Number' required></label><br><br>
+        <label>Mobile_No : <input type='number' id='mobile' placeholder='Enter Your Mobile Number' required></label><br>
+        <hr>
+        <h4>Fill up Your Marks in Particular Subjects :</h4>
+        01.Networking : <input type='number' id='net' min='0' max='100' required><br>
+        02.Java Script : <input type='number' id='js' min='0' max='100' required><br>
+        03.MySQL : <input type='number' id='mysql' min='0' max='100' required><br>
+        04.Python : <input type='number' id='python' min='0' max='100' required><br>
+        05.PHP : <input type='number' id='php' min='0' max='100' required><br>
+        <hr>
+        <input type='submit' value='Submit'>
+        <input type='reset' value='Clear Form' onclick="document.getElementById('output').innerHTML=''">
+    </div>
+</form>
+
+<center>
+    <hr>
+    <h2> -------------------------- Result Sheet of A Trainee ---------------------------</h2>
+    <hr>
+</center>
+
+<div id="output"></div>
+
+<script>
+document.getElementById('resultForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // पेज को रिफ्रेश होने से रोकने के लिए
+
+    // डेटा प्राप्त करना
+    const name = document.getElementById('tname').value;
+    const trade = document.getElementById('trade').value;
+    const roll = document.getElementById('roll').value;
+    const mobile = document.getElementById('mobile').value;
+    const net = parseInt(document.getElementById('net').value);
+    const js = parseInt(document.getElementById('js').value);
+    const mysql = parseInt(document.getElementById('mysql').value);
+    const python = parseInt(document.getElementById('python').value);
+    const php = parseInt(document.getElementById('php').value);
+
+    // कैलकुलेशन
+    const totalMarks = net + js + mysql + python + php;
+    const percentage = totalMarks / 5;
+    
+    // Pass/Fail लॉजिक (अगर किसी भी विषय में 30 से कम हैं तो Fail)
+    let result = (net < 30 || js < 30 || mysql < 30 || python < 30 || php < 30) ? "Fail" : "Pass";
+
+    // ग्रेड कैलकुलेशन
+    let grade = "";
+    if (percentage >= 90) grade = "A+";
+    else if (percentage >= 80) grade = "A";
+    else if (percentage >= 70) grade = "B+";
+    else if (percentage >= 60) grade = "B";
+    else if (percentage >= 50) grade = "C+";
+    else if (percentage >= 40) grade = "C";
+    else if (percentage >= 30) grade = "D";
+    else grade = "E";
+
+    // टेबल तैयार करके दिखाना
+    const outputDiv = document.getElementById('output');
+    outputDiv.innerHTML = `
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+            <table border='1' cellspacing='0' cellpadding='10'>
+                <tr><th colspan='2'>Trainee Details</th></tr>
+                <tr><th>Name</th><td>${name}</td></tr>
+                <tr><th>Trade</th><td>${trade}</td></tr>
+                <tr><th>Roll Number</th><td>${roll}</td></tr>
+                <tr><th>Mobile Number</th><td>${mobile}</td></tr>
+            </table>
+
+            <table border='2' cellspacing='0' cellpadding='12'>
+                <tr><th colspan='2'>Trainee's Report Card</th></tr>
+                <tr><th>Name of Subjects</th><th>Obtained Marks</th></tr>
+                <tr><th>Networking</th><td>${net}</td></tr>
+                <tr><th>Java Script</th><td>${js}</td></tr>
+                <tr><th>MySQL</th><td>${mysql}</td></tr>
+                <tr><th>Python</th><td>${python}</td></tr>
+                <tr><th>PHP</th><td>${php}</td></tr>
+                <tr><th bgcolor="#eee">Total Marks</th><td><b>${totalMarks}</b></td></tr>
+                <tr><th colspan='2' bgcolor="#ddd">Trainee's Performance Card</th></tr>
+                <tr><th>Percentage</th><td><b>${percentage}%</b></td></tr>
+                <tr><th>Result</th><td style="color: ${result === 'Pass' ? 'green' : 'red'}"><b>${result}</b></td></tr>
+                <tr><th>Grade</th><td><b>${grade}</b></td></tr>
+            </table>
+        </div>
+        <hr><hr>
+        <center><a href='#' onclick="location.reload()">Refresh Page</a></center>
+    `;
+});
+</script>
+
+</body>
+</html>
